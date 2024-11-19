@@ -1,0 +1,43 @@
+// styles.module.scss
+@import '@styles/mixin.module.scss';
+.container {
+  @include flex_box_custom(space-between, center, 0px);
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.boxUser {
+  display: flex;
+  align-items: center;
+}
+
+.boxUserContent {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.boxUserContent div:first-child {
+  margin-right: 10px;
+}
+
+.boxUserTitle p {
+  margin: 0;
+}
+
+.boxUserTitle p:first-child {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.boxUserTitle p:last-child {
+  font-size: 14px;
+  color: #777;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

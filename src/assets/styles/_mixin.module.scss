@@ -1,0 +1,26 @@
+@mixin radius_common($radius: 10px) {
+  border-radius: $radius;
+}
+
+@mixin flex_box_custom($x, $y, $gap: 10px) {
+  display: flex;
+  justify-content: $x;
+  align-items: $y;
+  gap: $gap;
+}
+
+@mixin btn($w, $h, $radius, $color) {
+  outline: none;
+  border: 1px solid #e1e1e1;
+  width: $w;
+  height: $h;
+  background-color: $color;
+  @include radius_common($radius);
+}
+
+@mixin flex-column($columns, $total-columns: 12) {
+  flex: 0 0 calc(100% / $total-columns * $columns);
+  max-width: calc(100% / $total-columns * $columns);
+  padding: 0 10px; // khoảng cách giữa các cột, nếu muốn
+  box-sizing: border-box;
+}

@@ -1,0 +1,33 @@
+.accordionItem {
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.accordionHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  cursor: pointer;
+  background-color: #f1f1f1;
+  transition: background-color 0.3s;
+}
+
+.accordionHeader:hover {
+  background-color: #ddd;
+}
+
+.accordionBody {
+  padding: 15px;
+  background-color: #fafafa;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.accordionIcon {
+  font-size: 20px;
+  font-weight: bold;
+  transition: transform 0.3s;
+}
+
+.accordionIcon.open {
+  transform: rotate(45deg);
+}

@@ -1,0 +1,108 @@
+@import '@styles/mixin.module.scss';
+@import '@styles/variable.module.scss';
+
+.container {
+  @include flex_box_custom(center, center, 0px);
+  left: 0;
+  right: 0;
+}
+
+.topHeader {
+  position: absolute;
+  top: 0;
+}
+
+.fixedHeader {
+  position: fixed;
+  top: -84px;
+  background-color: #ffffffe6;
+  box-shadow: 2px 0px 12px 0px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(5px);
+  z-index: 99;
+  transform: translateY(84px);
+  transition: transform 0.8s ease;
+}
+
+.containerHeader {
+  width: 1250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 83px;
+}
+
+.containerBox {
+  @include flex_box_custom(center, center, 20px);
+}
+
+.containerBoxIcon {
+  @include flex_box_custom(center, center, 20px);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.containerMenu {
+  @include flex_box_custom(center, center, 30px);
+}
+
+.boxIcon {
+  @include radius_common(50%);
+  @include flex_box_custom(center, center, 0px);
+  background-color: $primary_color;
+  width: 26px;
+  height: 26px;
+}
+
+.menu {
+  cursor: pointer;
+  padding-top: 8px;
+  font-size: 15px;
+  color: $primary_color;
+  position: relative;
+  text-decoration: none;
+
+  .subMenu {
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    padding: 10px;
+    top: 40px;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: $primary_color;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0;
+    margin-top: 6px;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.boxCart {
+  position: relative;
+
+  .quantity {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    font-size: 10px;
+    background-color: $primary_color;
+    color: #fff;
+    @include radius_common(50%);
+    width: 15px;
+    height: 15px;
+    @include flex_box_custom(center, center, 0px);
+  }
+}

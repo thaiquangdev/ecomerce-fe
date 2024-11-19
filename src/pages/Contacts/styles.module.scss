@@ -1,0 +1,113 @@
+@import '@styles/mixin.module.scss';
+@import '@styles/variable.module.scss';
+
+.container {
+  margin-top: 83px;
+
+  img {
+    height: auto;
+    max-width: 100%;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .boxForm {
+    margin-top: 40px;
+    border-radius: 3px;
+    border: 1px solid #e1e1e1;
+
+    .row {
+      display: flex;
+
+      .boxInfo {
+        width: 26%;
+
+        .boxInfoContent {
+          align-content: center;
+          align-items: center;
+          border-right: 1px solid #e1e1e1;
+          padding: 55px;
+
+          .title {
+            margin-bottom: 5px;
+
+            h2 {
+              color: $four_color;
+              font-size: 24px;
+              font-weight: 400;
+              line-height: 32px;
+            }
+          }
+
+          .boxInfoBorder {
+            margin-bottom: 5px;
+
+            .border {
+              padding: 10px 0;
+
+              span {
+                border: 1px solid #e1e1e1;
+                width: 100%;
+              }
+            }
+          }
+          .boxAddress {
+            margin-bottom: 5px;
+            .boxIcon {
+              @include flex_box_custom(flex-start, center, 5px);
+
+              .icon {
+                color: $four_color;
+                font-size: 11px;
+              }
+              .content {
+                font-size: 16px;
+                line-height: 21px;
+                color: $four_color;
+                margin-bottom: 0px;
+              }
+            }
+          }
+
+          .boxAddressDes {
+            margin-bottom: 5px;
+
+            .boxAddressTitle {
+              margin-bottom: 10px;
+
+              p {
+                color: $thr_color;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 23px;
+              }
+            }
+          }
+        }
+      }
+
+      .boxContent {
+        width: 74%;
+        .boxContentItem {
+          padding: 55px 100px;
+
+          .boxContentTitle {
+            margin-bottom: 15px;
+
+            h2 {
+              color: $four_color;
+              font-size: 24px;
+              font-weight: 400;
+              line-height: 32px;
+            }
+          }
+
+          .boxContentSubTitle {
+            margin-bottom: 15px;
+          }
+        }
+      }
+    }
+  }
+}

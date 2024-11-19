@@ -1,0 +1,84 @@
+@import '@styles/mixin.module.scss';
+.container {
+  padding-top: 83px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.content {
+  width: 100%;
+  table {
+    border-collapse: collapse;
+    background-color: #fff;
+    width: 100%;
+
+    th,
+    td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f4f4f4;
+      font-weight: 400;
+    }
+
+    td {
+      vertical-align: middle;
+    }
+
+    img {
+      max-width: 285px;
+      height: auto;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    // Sắp xếp phần thông tin sản phẩm
+    td > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      span {
+        display: block;
+        font-size: 0.9rem;
+
+        &:first-child {
+          font-weight: bold;
+        }
+
+        &:last-child {
+          color: #777;
+        }
+      }
+    }
+
+    .btn {
+      @include flex_box_custom(center, center, 5px);
+
+      .btnEye,
+      .btnTrash {
+        width: 40px;
+      }
+    }
+  }
+}
+
+// Trạng thái kho hàng
+td:last-child {
+  .is-primary {
+    margin-bottom: 10px;
+  }
+
+  div {
+    margin-bottom: 5px;
+  }
+}

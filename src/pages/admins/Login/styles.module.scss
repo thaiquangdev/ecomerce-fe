@@ -1,0 +1,64 @@
+@import '@styles/mixin.module.scss';
+@import '@styles/variable.module.scss';
+.container {
+  @include flex_box_custom(center, center, 0px);
+  height: 100vh;
+  background-color: #f5f7fb;
+
+  .content {
+    width: 400px;
+    padding: 20px;
+    background-color: $white-color;
+    border-radius: 6px;
+
+    .title {
+      h1 {
+        color: $primary-color;
+      }
+
+      p {
+        color: $thr-color;
+        margin-bottom: 24px;
+      }
+    }
+
+    form {
+      margin-bottom: 20px;
+      .boxItem {
+        display: flex;
+        gap: 5px;
+        flex-direction: column;
+        padding-bottom: 20px;
+
+        label {
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        input {
+          font-size: 17px;
+          padding: 10px 8px;
+          outline: none;
+        }
+      }
+
+      .boxBtn {
+        padding-top: 15px;
+        button {
+          width: 100%;
+        }
+      }
+    }
+
+    .boxForgot {
+      @include flex_box_custom(flex-end, center, 0px);
+
+      a {
+        color: $thr-color;
+        font-size: 14px;
+        font-weight: 400;
+        text-decoration: underline;
+      }
+    }
+  }
+}

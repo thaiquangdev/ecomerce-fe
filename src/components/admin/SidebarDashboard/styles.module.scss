@@ -1,0 +1,45 @@
+@import '@styles/mixin.module.scss';
+@import '@styles/variable.module.scss';
+.container {
+  width: 240px;
+
+  .boxLogo {
+    @include flex_box_custom(center, center, 0px);
+  }
+
+  .boxContent {
+    background-color: $primary_color;
+    height: 100%;
+
+    .boxList {
+      list-style: none;
+      color: $white-color;
+      padding: 10px 0;
+
+      .boxItem {
+        padding: 14px 20px;
+        @include flex_box_custom(flex-start, center, 8px);
+
+        &:hover {
+          background-color: $white-color;
+          color: $primary_color;
+          cursor: pointer;
+        }
+      }
+      .boxSubItem {
+        @include flex_box_custom(flex-start, flex-start, 0px);
+        flex-direction: column;
+        padding-left: 44px;
+        div {
+          padding: 6px;
+
+          &:hover {
+            background-color: $white-color;
+            color: $primary_color;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

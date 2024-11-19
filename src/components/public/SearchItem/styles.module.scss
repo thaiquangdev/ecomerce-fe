@@ -1,0 +1,181 @@
+@import "@styles/variable.module.scss";
+@import "@styles/mixin.module.scss";
+
+.container {
+  position: relative;
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+
+  .search {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1002;
+    height: 80vh;
+    transform: translateY(-100%);
+    transition: all 0.3s ease;
+  }
+
+  .slideSearch {
+    transform: translateY(0); // Khi hiển thị
+  }
+
+  .boxModel {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 25px;
+    z-index: 1003; // Đảm bảo boxModel luôn trên overlay và search
+
+    .boxClose {
+      position: absolute;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1004; // Đảm bảo Close button luôn hiển thị trên cùng
+      top: 10px;
+      right: 50px;
+      color: #333; // Đảm bảo icon Close có màu sắc nổi bật
+    }
+
+    .boxContent {
+      max-width: 1260px;
+      width: 100%;
+      padding: 0 15px;
+      margin: 0 auto;
+
+      .boxTitle {
+        .title {
+          text-align: center;
+          margin-bottom: 20px;
+          font-weight: 400;
+          color: $primary_color;
+          font-size: 24px;
+        }
+      }
+
+
+      .boxSearch {
+        @include flex_box_custom(center, center, 0px);
+        width: 100%;
+
+        // Style cho select
+        select {
+          padding: 12px 15px; // Thêm padding để làm cho select đẹp hơn
+          max-width: 140px;
+          width: 100%;
+          border: 1px solid #ccc;
+          border-right: none;
+          font-size: 14px;
+          background-color: #fff;
+          appearance: none; // Loại bỏ mũi tên mặc định trên select (nếu cần)
+          transition: border 0.3s ease; // Thêm hiệu ứng khi chọn
+          cursor: pointer;
+
+          &:focus {
+            border-color: #007bff; // Màu viền khi select được focus
+            outline: none; // Xóa outline mặc định của trình duyệt
+          }
+        }
+
+        // Style cho boxInput chứa input
+        .boxInput {
+          width: 100%;
+          max-width: 300px; // Giới hạn chiều rộng tối đa của input
+          border: 1px solid #ccc;
+          display: flex;
+          align-items: center;
+
+          input {
+            width: 100%;
+            border: none;
+            padding: 12px;
+            font-size: 14px;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+
+            &::placeholder {
+              color: #aaa; // Màu placeholder
+            }
+
+            &:focus {
+              border-color: #007bff; // Viền khi input được focus
+            }
+          }
+        }
+
+
+      }
+
+      .boxTrending {
+        @include flex_box_custom(center, center, 0px);
+        margin-top: 20px;
+
+        .boxTrendingTitle {
+
+        }
+
+        .boxTrendingItem {
+          display: inline-block;
+          padding: 5px 12px;
+          margin: 3px;
+          line-height: 1;
+          background-color: #f3f3f3;
+          color: $primary_color;
+        }
+
+      }
+
+      .boxPopular {
+        margin-top: 40px;
+        .boxPopularTitle {
+          text-align: center;
+          color: $primary_color;
+          font-weight: 400;
+          margin-bottom: 8px;
+          font-size: 24px;
+        }
+
+        .boxCategories {
+          @include flex_box_custom(center, center, 20px);
+          .boxCategoryItem {
+            img {
+              width: 200px;
+              height: 200px;
+            }
+
+            .boxCategoryItemTitle {
+              text-align: center;
+              font-size: 16px;
+              font-weight: 500;
+            }
+
+            .boxCategoryItemSubTitle {
+              text-align: center;
+              font-size: 14px;
+              font-weight: 400;
+            }
+          }
+
+        }
+      }
+
+      .boxBtnCategories {
+        @include flex_box_custom(center, center, 0px);
+        margin-top: 10px;
+      }
+    }
+  }
+}

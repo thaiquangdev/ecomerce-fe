@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+
+  .boxContent {
+    width: 100%;
+
+    .boxLayout {
+      background-color: #f5f7fb;
+    }
+  }
+}

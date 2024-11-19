@@ -1,0 +1,17 @@
+@import '@styles/variable.module.scss';
+@import '@styles/mixin.module.scss';
+
+.container {
+  margin-top: 10px;
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -10px;
+    margin-right: -10px;
+
+    .col {
+      @include flex-column(4); // Chia thành 4 cột, mỗi hàng có 3 sản phẩm
+    }
+  }
+}
