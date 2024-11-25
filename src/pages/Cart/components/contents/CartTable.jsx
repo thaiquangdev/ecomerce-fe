@@ -3,37 +3,8 @@ import { VscTrash } from 'react-icons/vsc';
 import styles from '../../styles.module.scss';
 import SelectBox from '@pages/OutShop/components/SelectBox';
 
-const CartTable = () => {
+const CartTable = ({ listProductCarts, getData, getDataDelete }) => {
   const { carttable, product } = styles;
-  const cartItems = [
-    {
-      id: 1,
-      name: 'adsfasdfasdf',
-      price: 123,
-      size: 'M',
-      quantity: 1,
-      image:
-        'https://xstore.8theme.com/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Image-1.1-min.jpg',
-    },
-    {
-      id: 1,
-      name: 'adsfasdfasdf',
-      price: 123,
-      size: 'M',
-      quantity: 1,
-      image:
-        'https://xstore.8theme.com/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Image-1.1-min.jpg',
-    },
-    {
-      id: 1,
-      name: 'adsfasdfasdf',
-      price: 123,
-      size: 'M',
-      quantity: 1,
-      image:
-        'https://xstore.8theme.com/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Image-1.1-min.jpg',
-    },
-  ];
 
   const showOption = [
     {
@@ -62,8 +33,9 @@ const CartTable = () => {
     },
   ];
 
-  const getValueSelect = (value, type) => {
-    console.log({ value, type });
+  const getValueSelect = (cdid, quantity) => {
+    const data = { cdid, quantity };
+    getData(data);
   };
 
   return (
@@ -79,22 +51,26 @@ const CartTable = () => {
           </tr>
         </thead>
         <tbody>
-          {cartItems.map((item) => (
+          {listProductCarts.map((item) => (
             <tr key={item.id}>
               <td className={product}>
-                <img src={item.img} alt='' />
+                <img src={item.product.images[0].imageUrl} alt='' />
                 <div>
-                  <p>{item.name}</p>
+                  <p>{item.product.title}</p>
                   <p>Size: {item.size}</p>
                 </div>
-                <Button content={<VscTrash />} />
+                <Button
+                  content={<VscTrash />}
+                  onClick={() => getDataDelete(item.id, item.productId)}
+                />
               </td>
               <td>${item.price}</td>
               <td>${item.sku}</td>
               <td>
                 <SelectBox
+                  defaultValue={item.quantity}
                   options={showOption}
-                  getValue={getValueSelect}
+                  getValue={(e) => getValueSelect(item.id, e)}
                   type='show'
                 />
               </td>

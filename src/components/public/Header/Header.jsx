@@ -29,7 +29,6 @@ const Header = () => {
 
   const { setIsOpen, setType, listProductCarts, listProductWishlists } =
     useContext(SiderBarContext);
-  console.log(listProductCarts);
 
   const handleOpenSideBar = (type) => {
     setIsOpen(true);

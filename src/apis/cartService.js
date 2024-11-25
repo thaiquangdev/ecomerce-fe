@@ -16,3 +16,15 @@ export const deleteCartItem = async (cartId, productId) => {
   );
   return resposne.data;
 };
+
+export const updateQuantityCartItem = async (cdid, quantity) => {
+  const response = await axiosClient.put(`/carts/update-cart/${cdid}`, {
+    quantity,
+  });
+  return response.data;
+};
+
+export const deleteAllCart = async (cid) => {
+  const response = await axiosClient.delete(`/carts/delete-cart/${cid}`);
+  return response.data;
+};
