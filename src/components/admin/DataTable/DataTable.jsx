@@ -6,11 +6,32 @@ import { MdDelete } from 'react-icons/md';
 
 const DataTable = ({ columns, data, onEdit, onDelete }) => {
   const { container } = styles;
-  const renderCell = (value) => {
+
+  const renderCell = (value, columnName) => {
     if (typeof value === 'boolean') {
-      return value ? 'true' : 'false'; // Thay đổi giá trị boolean thành chuỗi
+      return value ? 'True' : 'False'; // Thay đổi giá trị boolean thành chuỗi
     }
-    return value;
+
+    if (typeof value === 'number' && columnName === 'price') {
+      // Định dạng tiền tệ với dấu phân cách hàng nghìn và 2 chữ số sau dấu thập phân
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(value);
+    }
+
+    if (columnName === 'category') {
+      // Nếu cột là 'category', kiểm tra và hiển thị tên
+      return value && value.categoryName ? value.categoryName : 'N/A';
+    }
+
+    if (columnName === 'brand') {
+      // Nếu cột là 'brand', kiểm tra và hiển thị tên
+      return value && value.brandName ? value.brandName : 'N/A';
+    }
+
+    // Nếu giá trị không phải là đặc biệt, trả về giá trị gốc
+    return value !== null && value !== undefined ? value : 'N/A';
   };
 
   return (
@@ -25,10 +46,10 @@ const DataTable = ({ columns, data, onEdit, onDelete }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((row, rowIndex) => (
+        {data?.map((row, rowIndex) => (
           <tr key={rowIndex}>
             {columns.map((col, colIndex) => (
-              <td key={colIndex}>{renderCell(row[col.field])}</td>
+              <td key={colIndex}>{renderCell(row[col.field], col.field)}</td>
             ))}
             {/* Thêm các nút "Sửa" và "Xóa" ở cuối mỗi hàng */}
             <td>

@@ -56,6 +56,7 @@ const ProductItem = ({
     handleGetListProductCarts,
     handleGetListProductWishlists,
     listProductWishlists,
+    setDetailProductSlug,
   } = useContext(SiderBarContext);
   const { toast } = useContext(ToastContext);
 
@@ -139,6 +140,12 @@ const ProductItem = ({
     }
   };
 
+  const handleShowDetailProductSideBar = () => {
+    setIsOpen(true);
+    setType('detail');
+    setDetailProductSlug(slug);
+  };
+
   useEffect(() => {
     const handleChangeWishlist = () => {
       const wishlists = listProductWishlists.map((item) => item.productId);
@@ -160,13 +167,11 @@ const ProductItem = ({
   return (
     <div className={isShowGrid ? '' : containerItem}>
       <div>
-        <Link
-          to={`/product/${slug}`}
-          style={{ display: 'block' }}
-          className={boxImg}
-        >
-          <img src={src} alt='' />
-          <img src={prevSrc} alt='' className={showImgWhenHover} />
+        <div className={boxImg}>
+          <Link to={`/product/${slug}`} style={{ display: 'block' }}>
+            <img src={src} alt='' />
+            <img src={prevSrc} alt='' className={showImgWhenHover} />
+          </Link>
           <div className={showFunctionWhenHover}>
             <div className={boxIcon}>
               <img src={cartIcon} alt='' />
@@ -183,11 +188,11 @@ const ProductItem = ({
             <div className={boxIcon}>
               <img src={compareIcon} alt='' />
             </div>
-            <div className={boxIcon}>
+            <div className={boxIcon} onClick={handleShowDetailProductSideBar}>
               <img src={eyeIcon} alt='' />
             </div>
           </div>
-        </Link>
+        </div>
         <div className={isShowGrid ? '' : content}>
           {!isHomePage && (
             <div className={boxSize}>

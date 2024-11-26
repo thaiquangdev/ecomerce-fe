@@ -11,18 +11,19 @@ export const dataSidebar = [
     id: 1,
     title: 'Dashboard',
     icon: MdOutlineSpeed,
+    url: '/',
   },
   {
     id: 2,
     title: 'Catalog',
     icon: BsDatabase,
     children: [
-      { id: 1, title: 'Products List' },
-      { id: 2, title: 'Product' },
-      { id: 3, title: 'Categories List' },
-      { id: 4, title: 'Category' },
-      { id: 5, title: 'Brands List' },
-      { id: 6, title: 'Brand' },
+      { id: 1, title: 'Products List', url: '/products' },
+      { id: 2, title: 'Product', url: '/product-detail' },
+      { id: 3, title: 'Categories List', url: '/categories' },
+      { id: 4, title: 'Category', url: '/category' },
+      { id: 5, title: 'Brands List', url: '/brands' },
+      { id: 6, title: 'Brand', url: '/brand' },
     ],
   },
   {
@@ -30,8 +31,8 @@ export const dataSidebar = [
     title: 'Customers',
     icon: FiUser,
     children: [
-      { id: 1, title: 'Customers List' },
-      { id: 2, title: 'Customer' },
+      { id: 1, title: 'Customers List', url: '/customers' },
+      { id: 2, title: 'Customer', url: '/customer-detail' },
     ],
   },
   {
@@ -39,8 +40,8 @@ export const dataSidebar = [
     title: 'Carts',
     icon: BsCart2,
     children: [
-      { id: 1, title: 'Carts List' },
-      { id: 2, title: 'Cart detail' },
+      { id: 1, title: 'Carts List', url: '/carts' },
+      { id: 2, title: 'Cart detail', url: '/cart-detail' },
     ],
   },
   {

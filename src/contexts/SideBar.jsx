@@ -9,6 +9,7 @@ export const SiderBarProvider = ({ children }) => {
   const [type, setType] = useState('');
   const [listProductCarts, setListProductCarts] = useState([]);
   const [listProductWishlists, setListProductWishlists] = useState([]);
+  const [detailProductSlug, setDetailProductSlug] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleGetListProductCarts = (type) => {
@@ -60,6 +61,8 @@ export const SiderBarProvider = ({ children }) => {
         listProductCarts,
         listProductWishlists,
         isLoading,
+        detailProductSlug,
+        setDetailProductSlug,
       }}
     >
       {children}

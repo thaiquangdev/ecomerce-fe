@@ -49,7 +49,6 @@ axiosClient.interceptors.request.use(
 //       } catch (error) {
 //         // Xóa token khi refresh token không còn hợp lệ
 //         localStorage.removeItem('token');
-//         Cookies.remove('refreshToken');
 //         return Promise.reject(error);
 //       }
 //     }

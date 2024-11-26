@@ -1,0 +1,164 @@
+@import '@styles/mixin.module.scss';
+@import '@styles/variable.module.scss';
+.container {
+  display: flex;
+
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .boxHeader {
+    @include flex_box_custom(space-between, center, 0px);
+    padding: 20px;
+    background-color: #f5f7fb;
+  }
+
+  .containerForm {
+    .containerFormBody {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+
+      .boxForm {
+        width: 100%;
+
+        .boxFormHeader {
+          font-size: 16px;
+          color: $primary-color;
+          margin-bottom: 20px;
+        }
+
+        form {
+          .boxFormItem {
+            margin-bottom: 15px;
+
+            label {
+              display: block;
+              font-size: 14px;
+              font-weight: 500;
+              color: $primary-color;
+              margin-bottom: 6px;
+            }
+
+            input,
+            textarea,
+            select {
+              width: 100%;
+              padding: 10px;
+              border-radius: 4px;
+              border: 1px solid #ddd;
+              font-size: 14px;
+            }
+
+            textarea {
+              resize: vertical;
+            }
+
+            select {
+              width: 100%;
+              padding: 10px;
+              font-size: 14px;
+            }
+          }
+
+          .boxVariants {
+            display: flex;
+            flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+            margin-top: 20px;
+
+            .boxSize {
+              display: flex;
+              flex-direction: column; /* Các ô size và stock nằm theo chiều dọc */
+              margin-bottom: 10px;
+
+              .boxStock {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+
+                span {
+                  font-size: 16px;
+                  margin-right: 10px;
+                }
+
+                input {
+                  width: 60px; /* Độ rộng input stock */
+                  padding: 8px;
+                  margin-right: 10px;
+                }
+
+                button {
+                  background-color: #ff4d4f;
+                  color: white;
+                  padding: 4px 8px;
+                  font-size: 16px;
+                  border: none;
+                  border-radius: 50%;
+                  cursor: pointer;
+                  transition: background-color 0.3s;
+
+                  &:hover {
+                    background-color: #d43828;
+                  }
+                }
+              }
+            }
+
+            .boxAddSize {
+              margin-top: 20px;
+              button {
+                background-color: #52c41a;
+                color: white;
+                padding: 8px 16px;
+                font-size: 18px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+
+                &:hover {
+                  background-color: #389e0d;
+                }
+              }
+            }
+          }
+
+          .boxImage {
+            margin-top: 20px;
+
+            label {
+              display: block;
+              font-size: 14px;
+              font-weight: 500;
+              color: $primary-color;
+              margin-bottom: 6px;
+            }
+
+            input {
+              width: 100%;
+              padding: 10px;
+              font-size: 14px;
+              border-radius: 4px;
+              border: 1px solid #ddd;
+              margin-top: 6px;
+            }
+
+            img {
+              margin-top: 10px;
+              width: 100px; /* Set width of uploaded image */
+              height: auto;
+            }
+          }
+
+          .selectInput {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
