@@ -10,6 +10,27 @@
 .boxUser {
   display: flex;
   align-items: center;
+  position: relative;
+
+  &:hover .logoutButton {
+    opacity: 1; /* Hiển thị nút logout khi hover */
+    visibility: visible;
+  }
+}
+
+.logoutButton {
+  width: 100%;
+  opacity: 0; /* Ẩn nút logout mặc định */
+  visibility: hidden; /* Không cho phép chiếm không gian */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Hiệu ứng chuyển đổi */
+  position: absolute;
+  top: 100%; /* Xuất hiện bên dưới user info */
+  left: 0; /* Canh phải */
+  margin-top: 5px;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  cursor: pointer;
 }
 
 .boxUserContent {

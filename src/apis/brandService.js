@@ -1,10 +1,10 @@
 import axiosClient from './apiClient';
 
 export const getBrands = async (query) => {
-  const { page, limit } = query;
-  const response = await axiosClient.get(
-    `/brands/get-brands?page=${page}&limit=${limit}`
-  );
+  const { page = 1, limit = 8, name = '' } = query; // Đặt giá trị mặc định
+  const response = await axiosClient.get('/brands/get-brands', {
+    params: { page, limit, name }, // Sử dụng params để tạo query string tự động
+  });
   return response.data;
 };
 

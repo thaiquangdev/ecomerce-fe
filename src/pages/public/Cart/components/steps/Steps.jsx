@@ -1,7 +1,7 @@
 import Stepper from './Stepper';
 import styles from '../../styles.module.scss';
 
-const Steps = () => {
+const Steps = ({ currentStep }) => {
   const { containerStep, steps, line, textNoti } = styles;
 
   const dataStep = [
@@ -14,15 +14,16 @@ const Steps = () => {
     <div className={containerStep}>
       <div className={steps}>
         {dataStep.map((item, index) => (
-          <>
+          <div key={index}>
             <Stepper
               number={item.number}
               content={item.content}
-              key={index}
-              isDisable={index !== 0}
+              isCompleted={index < currentStep - 1}
+              isActive={index === currentStep - 1}
+              isDisable={index >= currentStep}
             />
             {index !== dataStep.length - 1 && <div className={line} />}
-          </>
+          </div>
         ))}
       </div>
       <div className={textNoti}>

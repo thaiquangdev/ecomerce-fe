@@ -5,7 +5,7 @@ import { MdModeEdit } from 'react-icons/md';
 import { MdDelete } from 'react-icons/md';
 
 const DataTable = ({ columns, data, onEdit, onDelete }) => {
-  const { container } = styles;
+  const { container, inStock, outOfStock } = styles;
 
   const renderCell = (value, columnName) => {
     if (typeof value === 'boolean') {
@@ -28,6 +28,50 @@ const DataTable = ({ columns, data, onEdit, onDelete }) => {
     if (columnName === 'brand') {
       // Nếu cột là 'brand', kiểm tra và hiển thị tên
       return value && value.brandName ? value.brandName : 'N/A';
+    }
+
+    if (columnName === 'variants') {
+      // Kiểm tra `value` và `variants` hợp lệ trước khi xử lý
+      const totalStock =
+        value &&
+        value.reduce((sum, item) => {
+          // Kiểm tra và đảm bảo `item.stock` là số hợp lệ
+          return sum + (typeof item.stock === 'number' ? item.stock : 0);
+        }, 0);
+
+      const totalSold =
+        value &&
+        value.reduce((sum, item) => {
+          return sum + (typeof item.sold === 'number' ? item.sold : 0);
+        }, 0);
+
+      return totalStock === 0 ? (
+        <span className={outOfStock}>Out of Stock</span>
+      ) : (
+        <span className={inStock}>
+          {' '}
+          {`${totalStock} In Stock`} {totalSold > 0 && `| Sold: ${totalSold}`}
+        </span>
+      );
+    }
+
+    if (columnName === 'createdAt') {
+      const date = new Date(value);
+
+      const day = date.getDate().toString().padStart(2, '0');
+      const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Tháng bắt đầu từ 0
+      const year = date.getFullYear();
+
+      const formattedDate = `${day}/${month}/${year}`;
+      return formattedDate;
+    }
+
+    if (columnName === 'user') {
+      return value.fullName;
+    }
+
+    if (columnName === 'cart') {
+      return value?.details?.length;
     }
 
     // Nếu giá trị không phải là đặc biệt, trả về giá trị gốc

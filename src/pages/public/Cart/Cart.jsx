@@ -11,7 +11,7 @@ const Cart = () => {
     <>
       <Header />
       <div className={container}>
-        <Steps />
+        <Steps currentStep={1} />
         <MainLayout>
           <Content />
         </MainLayout>

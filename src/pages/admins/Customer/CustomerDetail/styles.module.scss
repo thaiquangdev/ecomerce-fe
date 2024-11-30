@@ -1,0 +1,99 @@
+@import '@styles/mixin.module.scss';
+
+// General container settings
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f7fb;
+}
+
+// Layout for main dashboard area
+.layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+// Title section for page title and action button
+.titleSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  button {
+    width: 100px;
+  }
+}
+
+.main {
+  display: flex;
+
+  .boxLeft {
+    background-color: #fff;
+    max-width: 20rem;
+    flex-grow: 1;
+
+    .icon {
+      @include flex_box_custom(center, center, 0px);
+      padding-top: 20px;
+    }
+
+    .info {
+      @include flex_box_custom(center, center, 5px);
+      padding: 15px 0;
+      flex-direction: column;
+      font-size: 14px;
+      color: #333;
+      font-weight: 500;
+    }
+  }
+  .boxRight {
+    margin-left: 20px;
+    width: auto;
+    flex-shrink: 1;
+    flex: 1;
+
+    .orderContainer {
+      background-color: #fff;
+      margin-bottom: 20px;
+      .orderTitle {
+        padding: 10px;
+        h2 {
+          font-size: 16px;
+          font-weight: 500;
+          color: #333;
+        }
+      }
+
+      .orderMain {
+        .orderTable {
+          width: 100%;
+          padding: 10px 10px;
+          tbody {
+            tr {
+              td {
+                font-size: 14px;
+                font-weight: 400;
+                color: #222;
+                padding: 10px;
+                border-bottom: 1px solid #e1e1e1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

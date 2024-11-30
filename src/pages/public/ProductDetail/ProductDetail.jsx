@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { getProduct } from '@/apis/productService';
 import classNames from 'classnames';
 import ProductItem from '@components/public/ProductItem/ProductItem';
+import Review from './components/Review';
 const ProductDetail = () => {
   const {
     container,
@@ -176,6 +177,8 @@ const ProductDetail = () => {
               </div>
             </div>
           </div>
+          {/* review */}
+          <Review />
           <div className={boxRelated}>
             <h2>Related products</h2>
             <div className={boxRelatedList}>

@@ -1,0 +1,178 @@
+@import '@styles/mixin.module.scss';
+@import '@styles/variable.module.scss';
+
+.container {
+  padding-top: 83px;
+}
+
+.containerContent {
+  display: flex;
+
+  .checkoutForm {
+    width: 65%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    h3.title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+
+  .formGroup {
+    margin-bottom: 20px;
+  }
+
+  .formRow {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .label {
+    font-size: 14px;
+    color: #666;
+  }
+
+  .input,
+  .select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+
+    &:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+    }
+  }
+
+  .button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  .orderSummary {
+    width: 35%;
+    margin-left: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+
+    h3 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 20px 0;
+    }
+  }
+
+  .orderItem {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+
+    .productImage {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+    }
+
+    .remove {
+      background: none;
+      color: #f00;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+  }
+
+  .orderDetails {
+    flex: 1;
+    p {
+      margin: 5px 0;
+    }
+  }
+
+  .orderTotal {
+    text-align: right;
+
+    p {
+      margin: 5px 0;
+      color: #888;
+    }
+
+    h4 {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+  }
+
+  .paymentOptions {
+    label {
+      display: block;
+      margin-bottom: 15px;
+
+      p {
+        margin: 5px 0;
+        color: #888;
+        font-size: 12px;
+      }
+    }
+
+    input[type='radio'] {
+      margin-right: 10px;
+    }
+  }
+
+  .placeOrderButton {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #555;
+    }
+  }
+}

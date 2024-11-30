@@ -1,0 +1,61 @@
+@import '@styles/mixin.module.scss';
+
+// General container settings
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f7fb;
+}
+
+// Layout for main dashboard area
+.layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+// Title section for page title and action button
+.titleSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  button {
+    width: 200px;
+  }
+}
+
+// Table container for search and data table
+.tableContainer {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+// Search bar styling
+.searchBar {
+  display: flex;
+  margin-bottom: 1rem;
+
+  input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+}

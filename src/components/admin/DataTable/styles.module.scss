@@ -14,6 +14,16 @@
   text-align: left;
 }
 
+.container {
+  tr {
+    td {
+      font-size: 14px;
+      font-weight: 400;
+      color: #222;
+    }
+  }
+}
+
 .trueValue {
   color: green; // Màu xanh cho giá trị true
   font-weight: bold;
@@ -41,4 +51,14 @@
   border: none;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.outOfStock {
+  color: red; /* Màu đỏ cho trạng thái hết hàng */
+  font-weight: bold;
+}
+
+.inStock {
+  color: green; /* Màu xanh cho trạng thái còn hàng */
+  font-weight: bold;
 }

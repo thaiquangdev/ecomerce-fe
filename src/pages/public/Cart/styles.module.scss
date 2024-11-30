@@ -19,6 +19,10 @@
       min-width: 120px;
       height: 1px;
       background-color: #e1e1e1;
+
+      &.completed {
+        background-color: $primary-color; // Đổi màu khi bước đã hoàn thành
+      }
     }
   }
 
@@ -40,6 +44,15 @@
       height: 28px;
       border-radius: 50%;
       color: $white-color;
+
+      &.completed {
+        background-color: green; // Màu xanh lá (bước đã hoàn thành)
+      }
+
+      &.active {
+        background-color: $primary-color; // Màu đặc biệt cho bước hiện tại
+        border: 2px solid $primary-color;
+      }
     }
 
     .isDis {
@@ -51,6 +64,15 @@
     .textStep {
       color: $primary-color;
       font-size: 20px;
+
+      &.completed {
+        color: green; // Màu xanh lá cho bước đã hoàn thành
+      }
+
+      &.active {
+        font-weight: bold; // Bước hiện tại đậm hơn
+        color: $primary-color; // Màu khác biệt
+      }
     }
 
     .isDisText {
@@ -295,5 +317,24 @@
         padding: 0 30px;
       }
     }
+  }
+}
+
+.boxEmpty {
+  @include flex_box_custom(center, center, 20px);
+  flex-direction: column;
+  width: 100%;
+
+  font-size: 14px;
+  color: $thr-color;
+
+  .titleEmpty {
+    font-size: 24px;
+    color: $primary-color;
+  }
+
+  .boxBtnEmpty {
+    padding: 0 20px;
+    font-size: 12px;
   }
 }

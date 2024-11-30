@@ -2,7 +2,8 @@ import Button from '@components/Button/Button';
 import styles from '../../styles.module.scss';
 import classNames from 'classnames';
 import { useContext } from 'react';
-import { SiderBarProvider } from 'src/contexts/SideBar';
+import { SiderBarContext } from '@/contexts/SideBar';
+import { useNavigate } from 'react-router-dom';
 
 const CartSumary = () => {
   const {
@@ -30,11 +31,21 @@ const CartSumary = () => {
     'https://xstore.8theme.com/elementor2/marseille04/wp-content/themes/xstore/images/woocommerce/payment-icons/bitcoin.jpeg',
   ];
 
-  const { listProductCarts } = useContext(SiderBarProvider);
+  const navigate = useNavigate();
+
+  const { listProductCarts } = useContext(SiderBarContext);
 
   const total = listProductCarts.reduce((sum, item) => {
     return sum + Number(item.totalPrice);
   }, 0);
+
+  const handleCheckout = () => {
+    navigate('/checkout');
+  };
+
+  const handleOutShop = () => {
+    navigate('/shop');
+  };
 
   return (
     <div className={containerRight}>
@@ -50,8 +61,12 @@ const CartSumary = () => {
         </div>
 
         <div className={buttons}>
-          <Button content={'PROCESS TO CHECKOUT'} />
-          <Button content={'CONTINUTE SHOPPING'} isPrimary={false} />
+          <Button content={'PROCESS TO CHECKOUT'} onClick={handleCheckout} />
+          <Button
+            content={'CONTINUTE SHOPPING'}
+            isPrimary={false}
+            onClick={handleOutShop}
+          />
         </div>
       </div>
 

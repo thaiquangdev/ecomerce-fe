@@ -1,3 +1,5 @@
+@import '@styles/mixin.module.scss';
+
 // General container settings
 .container {
   display: flex;
@@ -29,6 +31,10 @@
     font-size: 1.5rem;
     font-weight: bold;
   }
+
+  button {
+    width: 200px;
+  }
 }
 
 // Table container for search and data table
@@ -52,4 +58,9 @@
     border: 1px solid #ddd;
     border-radius: 4px;
   }
+}
+
+.pagination {
+  margin-top: 20px;
+  @include flex_box_custom(flex-end, center, 0px);
 }

@@ -8,6 +8,7 @@ import styles from './styles.module.scss';
 import { getProducts } from '@/apis/productService';
 import { useNavigate } from 'react-router-dom';
 import { deleteProduct } from '@/apis/productService';
+import Pagination from '@components/admin/Pagination/Pagination';
 
 const ProductList = () => {
   const {
@@ -17,11 +18,16 @@ const ProductList = () => {
     titleSection,
     tableContainer,
     searchBar,
+    pagination,
   } = styles;
 
   const navigate = useNavigate();
 
   const [products, setProducts] = useState(null);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(8);
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [name, setName] = useState('');
 
   const columns = [
     { header: 'ID', field: 'id' },
@@ -29,6 +35,7 @@ const ProductList = () => {
     { header: 'Brand', field: 'brand' },
     { header: 'Category', field: 'category' },
     { header: 'Price', field: 'price' },
+    { header: 'Stock', field: 'variants' },
   ];
 
   const handleAddNewProductNavigate = () => {
@@ -56,20 +63,33 @@ const ProductList = () => {
   };
 
   useEffect(() => {
-    const query = {
-      page: 1,
-      limit: 10,
-      sort: 0,
-    };
-    getProducts(query)
+    getProducts({ limit, page, sort: 0, name })
       .then((res) => {
-        console.log(res);
         setProducts(res.products);
+        setTotalProducts(res.totalProducts);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [limit, page, name]);
+
+  // hàm xử lý phân trang
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  };
+
+  // hàm xử lý tìm kiếm
+  const handleSearchTitle = (e) => {
+    setName(e);
+    getProducts({ limit, page, sort: 0, name: e })
+      .then((res) => {
+        setProducts(res.products);
+        setTotalProducts(res.totalProducts);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className={container}>
@@ -87,7 +107,16 @@ const ProductList = () => {
             </div>
             <div className={tableContainer}>
               <div className={searchBar}>
-                <input placeholder='Start typing to search for products' />
+                <input
+                  placeholder='Start typing to search for products'
+                  value={name}
+                  onChange={(e) => handleSearchTitle(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleSearchTitle(e.target.value);
+                    }
+                  }}
+                />
               </div>
               <DataTable
                 columns={columns}
@@ -96,6 +125,16 @@ const ProductList = () => {
                 onDelete={onDelete}
               />
             </div>
+            {totalProducts > 8 && (
+              <div className={pagination}>
+                <Pagination
+                  currentPage={page}
+                  totalItems={totalProducts}
+                  itemsPerPage={limit}
+                  onPageChange={handlePageChange}
+                />
+              </div>
+            )}
           </div>
         </DashboardLayout>
       </div>

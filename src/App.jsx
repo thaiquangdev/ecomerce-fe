@@ -8,6 +8,8 @@ import { StoreProvider } from './contexts/StoreProvider';
 import routerDashboard from './Routes/routerDashboard';
 import { SearchProvider } from './contexts/SearchProvider';
 import SearchItem from '@components/public/SearchItem/SearchItem';
+import ProtectAdminRouter from './Routes/protectAdminRouter';
+import Login from '@pages/admins/Login/Login';
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
                 <SearchItem />
                 <SideBar />
                 <Routes>
+                  {/* Public routes */}
                   {router.map((item, index) => (
                     <Route
                       key={index}
@@ -27,11 +30,20 @@ function App() {
                       element={<item.component />}
                     />
                   ))}
+
+                  {/* Admin login */}
+                  <Route path='/admin/login' element={<Login />} />
+
+                  {/* Admin protected routes */}
                   {routerDashboard.map((item, index) => (
                     <Route
                       key={`dashboard-${index}`}
                       path={item.path}
-                      element={<item.component />}
+                      element={
+                        <ProtectAdminRouter>
+                          <item.component />
+                        </ProtectAdminRouter>
+                      }
                     />
                   ))}
                 </Routes>

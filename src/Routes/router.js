@@ -3,31 +3,35 @@ import { lazy } from 'react';
 const router = [
   {
     path: '/',
-    component: lazy(() => import('@pages/Home/Home')),
+    component: lazy(() => import('@pages/public/Home/Home')),
   },
   {
     path: '/shop',
-    component: lazy(() => import('@pages/OutShop/OutShop')),
+    component: lazy(() => import('@pages/public/OutShop/OutShop')),
   },
   {
     path: '/wishlist',
-    component: lazy(() => import('@pages/Wishlist/Wishlist')),
+    component: lazy(() => import('@pages/public/Wishlist/Wishlist')),
   },
   {
     path: '/product/:slug',
-    component: lazy(() => import('@pages/ProductDetail/ProductDetail')),
+    component: lazy(() => import('@pages/public/ProductDetail/ProductDetail')),
   },
   {
     path: '/about-us',
-    component: lazy(() => import('@pages/AboutUs/AboutUs')),
+    component: lazy(() => import('@pages/public/AboutUs/AboutUs')),
   },
   {
     path: '/contacts',
-    component: lazy(() => import('@pages/Contacts/Contacts')),
+    component: lazy(() => import('@pages/public/Contacts/Contacts')),
   },
   {
     path: '/cart',
-    component: lazy(() => import('@pages/Cart/Cart')),
+    component: lazy(() => import('@pages/public/Cart/Cart')),
+  },
+  {
+    path: '/checkout',
+    component: lazy(() => import('@pages/public/Checkout/Checkout')),
   },
 ];
 

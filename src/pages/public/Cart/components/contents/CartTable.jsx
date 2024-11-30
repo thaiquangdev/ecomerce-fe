@@ -1,7 +1,7 @@
 import Button from '@components/Button/Button';
 import { VscTrash } from 'react-icons/vsc';
 import styles from '../../styles.module.scss';
-import SelectBox from '@pages/OutShop/components/SelectBox';
+import SelectBox from '@pages/public/OutShop/components/SelectBox';
 
 const CartTable = ({ listProductCarts, getData, getDataDelete }) => {
   const { carttable, product } = styles;

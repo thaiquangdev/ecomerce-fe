@@ -14,6 +14,7 @@ const OutShop = () => {
   const handleBackPreviousPage = () => {
     navigate(-1);
   };
+
   return (
     <>
       <OurShopProvider>

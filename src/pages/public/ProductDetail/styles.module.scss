@@ -338,3 +338,63 @@
     }
   }
 }
+
+.container {
+  margin: 20px;
+  padding: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.noReviews,
+.firstReview {
+  font-size: 16px;
+  color: #777;
+}
+
+.rating {
+  margin-bottom: 20px;
+}
+
+.rating label {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.stars {
+  display: flex;
+  gap: 5px;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 24px;
+  color: #f39c12;
+  transition: color 0.3s;
+}
+
+.star:hover {
+  color: #e67e22;
+}
+
+.reviewInput {
+  margin-top: 10px;
+}
+
+.reviewInput label {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.reviewInput textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+  min-height: 100px;
+}

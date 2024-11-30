@@ -6,10 +6,6 @@ const routerDashboard = [
     component: lazy(() => import('@pages/admins/Dashboard/Dashboard')),
   },
   {
-    path: '/login',
-    component: lazy(() => import('@pages/admins/Login/Login')),
-  },
-  {
     path: '/dashboard/categories',
     component: lazy(() =>
       import('@pages/admins/Category/CategoriesList/CategoriesList')
@@ -48,6 +44,28 @@ const routerDashboard = [
   {
     path: '/dashboard/category/:slug',
     component: lazy(() => import('@pages/admins/Category/Category/Category')),
+  },
+  {
+    path: '/dashboard/customers',
+    component: lazy(() =>
+      import('@pages/admins/Customer/CustomerList/CustomerList')
+    ),
+  },
+  {
+    path: '/dashboard/customers/:id',
+    component: lazy(() =>
+      import('@pages/admins/Customer/CustomerDetail/CustomerDetail')
+    ),
+  },
+  {
+    path: '/dashboard/orders',
+    component: lazy(() => import('@pages/admins/Order/OrderList/OrderList')),
+  },
+  {
+    path: '/dashboard/orders/:id',
+    component: lazy(() =>
+      import('@pages/admins/Order/OrderDetail/OrderDetail')
+    ),
   },
 ];
 

@@ -1,32 +1,33 @@
+@import '@styles/mixin.module.scss';
+
 .container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
-.pageButton {
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
-  color: #333;
-  padding: 5px 10px;
-  margin: 0 5px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.3s ease;
+.pagination {
+  @include flex_box_custom(center, center, 5px);
 
-  &:hover {
-    background-color: #007bff;
-    color: #fff;
+  button {
+    height: 30px;
+    padding: 10px;
+    @include flex_box_custom(center, center, 0px);
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &.active {
+      background-color: #333;
+      color: #fff;
+      border: 2px solid #555; /* Thêm viền để phân biệt */
+    }
+
+    &.disable {
+      background-color: #e9ecef;
+      cursor: not-allowed;
+      opacity: 0.6; /* Giảm độ rõ để làm nổi bật trạng thái */
+    }
   }
-
-  &:disabled {
-    background-color: #e9ecef;
-    cursor: not-allowed;
-  }
-}
-
-.activeButton {
-  background-color: #007bff;
-  color: #fff;
-  font-weight: bold;
 }

@@ -1,9 +1,10 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Thêm hook useNavigate
 import styles from './styles.module.scss';
 import { SearchContext } from '@/contexts/SearchProvider';
 import classNames from 'classnames';
 import { IoMdClose } from 'react-icons/io';
-import Button from "@components/Button/Button.jsx";
+import Button from '@components/Button/Button.jsx';
 
 const SearchItem = () => {
   const {
@@ -14,28 +15,36 @@ const SearchItem = () => {
     boxModel,
     boxContent,
     boxClose,
-      boxTitle,
-      title,
-      boxSearch,
-      boxInput,
-      boxBtn,
-      boxTrending,
-      boxTrendingTitle,
-      boxTrendingItem,
-      boxPopular,
-      boxPopularTitle,
-      boxCategories,
-      boxCategoryItem,
-      boxCategoryItemTitle,
-      boxCategoryItemSubTitle,
-      boxBtnCategories
+    boxTitle,
+    titl,
+    boxSearch,
+    boxInput,
+    boxBtn,
   } = styles;
-  const { isSearchVisiable, setIsSearchVisiable } =
+
+  const { isSearchVisiable, setIsSearchVisiable, categories } =
     useContext(SearchContext);
 
-  const handleToggle = () => {
-    setIsSearchVisiable(!isSearchVisiable);
-    console.log('Toggled isSearchVisiable:', !isSearchVisiable);
+  const [category, setCategory] = useState('');
+  const [title, setTitle] = useState('');
+
+  const navigate = useNavigate(); // Khởi tạo navigate
+
+  const handleSearch = () => {
+    // Xây dựng query string
+    const queryParams = new URLSearchParams();
+
+    if (category.trim()) queryParams.append('category', category);
+    if (title.trim()) queryParams.append('name', title);
+
+    // Nếu không có tham số nào, điều hướng về trang shop ban đầu
+    if (!category.trim() && !title.trim()) {
+      navigate('/shop');
+      return;
+    }
+
+    // Điều hướng đến trang danh sách sản phẩm kèm query string
+    navigate(`/shop?${queryParams.toString()}`);
   };
 
   return (
@@ -44,7 +53,7 @@ const SearchItem = () => {
         className={classNames({
           [overlay]: isSearchVisiable,
         })}
-        onClick={handleToggle}
+        onClick={() => setIsSearchVisiable(false)}
       />
       <div
         className={classNames(search, {
@@ -60,62 +69,29 @@ const SearchItem = () => {
               <IoMdClose size={30} />
             </span>
             <div className={boxContent}>
-                <form action=''>
-                    <div className={boxTitle}>
-                        <div className={title}>What Are You Looking For?</div>
-                    </div>
-                    <div className={boxSearch}>
-                        <select>
-                            <option value="">All Categories</option>
-                        </select>
-                        <div className={boxInput}>
-                            <input placeholder={"Search for products"}/>
-                        </div>
-                        <div className={boxBtn}>
-                            <Button content={"SEARCH"}/>
-                        </div>
-                    </div>
-
-                    <div className={boxTrending}>
-                        <span className={boxTrendingTitle}>TRENDING SEARCHES:</span>
-                        <span className={boxTrendingItem}>Shirt</span>
-                        <span className={boxTrendingItem}>Shoes</span>
-                        <span className={boxTrendingItem}>Cap</span>
-                        <span className={boxTrendingItem}>Skirt</span>
-                    </div>
-
-                    <div className={boxPopular}>
-                        <div className={boxPopularTitle}>Popular Categories</div>
-                        <div className={boxCategories}>
-                            <div className={boxCategoryItem}>
-                                <img
-                                    src="https://xstore.b-cdn.net/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Image-17.1-min.jpg"
-                                    alt=""/>
-                                <p className={boxCategoryItemTitle}>All</p>
-                                <p className={boxCategoryItemSubTitle}>20 products</p>
-                            </div>
-                            <div className={boxCategoryItem}>
-                                <img
-                                    src="https://xstore.b-cdn.net/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Image-17.1-min.jpg"
-                                    alt=""/>
-                                <p className={boxCategoryItemTitle}>All</p>
-                                <p className={boxCategoryItemSubTitle}>20 products</p>
-                            </div>
-                            <div className={boxCategoryItem}>
-                                <img
-                                    src="https://xstore.b-cdn.net/elementor2/marseille04/wp-content/uploads/sites/2/2022/12/Image-17.1-min.jpg"
-                                    alt=""/>
-                                <p className={boxCategoryItemTitle}>All</p>
-                                <p className={boxCategoryItemSubTitle}>20 products</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={boxBtnCategories}>
-                        <Button content={"VIEW ALL CATEGORIES"}/>
-                    </div>
-                </form>
-
+              <div className={boxTitle}>
+                <div className={titl}>What Are You Looking For?</div>
+              </div>
+              <div className={boxSearch}>
+                <select onChange={(e) => setCategory(e.target.value)}>
+                  <option value=''>All Categories</option>
+                  {categories.map((item) => (
+                    <option value={item.id} key={item.id}>
+                      {item.categoryName}
+                    </option>
+                  ))}
+                </select>
+                <div className={boxInput}>
+                  <input
+                    placeholder='Search for products'
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                </div>
+                <div className={boxBtn}>
+                  <Button content={'SEARCH'} onClick={handleSearch} />
+                </div>
+              </div>
             </div>
           </div>
         )}

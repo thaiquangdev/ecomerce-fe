@@ -27,6 +27,8 @@ export const OurShopProvider = ({ children }) => {
   const [isLoadMore, setIsLoadMore] = useState(false);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('');
 
   const handleLoadmore = () => {
     const query = {
@@ -64,6 +66,8 @@ export const OurShopProvider = ({ children }) => {
     handleLoadmore,
     total,
     isLoadMore,
+    setName,
+    setCategory,
   };
 
   useEffect(() => {
@@ -71,6 +75,8 @@ export const OurShopProvider = ({ children }) => {
       sort: sortId,
       page: 1,
       limit: showId,
+      name,
+      category,
     };
     getProducts(query).then(
       (res) => {
@@ -83,7 +89,7 @@ export const OurShopProvider = ({ children }) => {
         setIsLoading(false);
       }
     );
-  }, [sortId, showId]);
+  }, [sortId, showId, name, category]);
 
   return (
     <OurShopContext.Provider value={values}>{children}</OurShopContext.Provider>

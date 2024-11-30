@@ -1,14 +1,34 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { OurShopContext } from '@/contexts/OurShopProvider';
 import MainLayout from '@components/public/Layout/Layout';
 import ProductItem from '@components/public/ProductItem/ProductItem';
 import styles from '../style.module.scss';
 import Button from '@components/Button/Button';
+import { useSearchParams } from 'react-router-dom';
 
 const ListProduct = () => {
-  const { products, isShowGrid, isLoading, handleLoadmore, total, isLoadMore } =
-    useContext(OurShopContext);
+  const {
+    products,
+    isShowGrid,
+    isLoading,
+    handleLoadmore,
+    total,
+    isLoadMore,
+    setName,
+    setCategory,
+  } = useContext(OurShopContext);
   const { containerListProduct, col, row, btn, sectionListProduct } = styles;
+
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const category = searchParams.get('category') || '';
+    const name = searchParams.get('name') || '';
+
+    setCategory(category);
+    setName(name);
+  }, [searchParams]);
+
   return (
     <div className={sectionListProduct}>
       <MainLayout>

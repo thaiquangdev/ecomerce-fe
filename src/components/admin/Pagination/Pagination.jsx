@@ -1,4 +1,6 @@
+import Button from '@components/Button/Button';
 import styles from './styles.module.scss'; // Import styles cho phân trang
+import classNames from 'classnames';
 
 const Pagination = ({
   currentPage,
@@ -6,45 +8,63 @@ const Pagination = ({
   itemsPerPage,
   onPageChange,
 }) => {
-  const totalPages = Math.ceil(totalItems / itemsPerPage); // Tính số trang
+  const totalPages = Math.ceil(totalItems / itemsPerPage); // Tính tổng số trang
 
   const handleClick = (page) => {
-    if (page < 1 || page > totalPages) return; // Kiểm tra trang hợp lệ
-    onPageChange(page); // Gọi hàm xử lý thay đổi trang
+    if (page < 1 || page > totalPages) return; // Trang hợp lệ
+    onPageChange(page); // Gọi hàm thay đổi trang
   };
 
-  const pageNumbers = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
+  // Tạo dải số trang với số nút giới hạn (2 nút trước/sau trang hiện tại)
+  const generatePageNumbers = () => {
+    const pageNumbers = [];
+    const range = 2; // Hiển thị tối đa 2 trang trước và sau
+
+    for (
+      let i = Math.max(1, currentPage - range);
+      i <= Math.min(totalPages, currentPage + range);
+      i++
+    ) {
+      pageNumbers.push(i);
+    }
+
+    return pageNumbers;
+  };
+
+  const pageNumbers = generatePageNumbers();
 
   return (
     <div className={styles.pagination}>
-      <button
-        className={styles.pageButton}
+      {/* Nút Prev */}
+      <Button
         onClick={() => handleClick(currentPage - 1)}
         disabled={currentPage === 1}
-      >
-        Previous
-      </button>
+        content={'Prev'}
+        isPrimary={false}
+        className={classNames({ [styles.disabled]: currentPage === 1 })}
+      />
+
+      {/* Nút số trang */}
       {pageNumbers.map((page) => (
-        <button
+        <Button
           key={page}
-          className={`${styles.pageButton} ${
-            page === currentPage ? styles.active : ''
-          }`}
           onClick={() => handleClick(page)}
-        >
-          {page}
-        </button>
+          content={page}
+          isPrimary={page === currentPage} // Đánh dấu nút đang được chọn
+          className={classNames({ [styles.active]: page === currentPage })}
+        />
       ))}
-      <button
-        className={styles.pageButton}
+
+      {/* Nút Next */}
+      <Button
         onClick={() => handleClick(currentPage + 1)}
         disabled={currentPage === totalPages}
-      >
-        Next
-      </button>
+        content={'Next'}
+        isPrimary={false}
+        className={classNames({
+          [styles.disabled]: currentPage === totalPages,
+        })}
+      />
     </div>
   );
 };

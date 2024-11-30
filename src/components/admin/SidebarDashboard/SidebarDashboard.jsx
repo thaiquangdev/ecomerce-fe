@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 import logo from '@icons/images/logo-retina.png';
 import { dataSidebar } from './constants';
@@ -7,6 +7,8 @@ import { useState } from 'react';
 const SidebarDashboard = () => {
   const { container, boxLogo, boxContent, boxList, boxItem, boxSubItem } =
     styles;
+
+  const navigate = useNavigate();
 
   // Sử dụng state để lưu trạng thái mở/đóng của mỗi menu con
   const [openSubMenu, setOpenSubMenu] = useState({});
@@ -43,7 +45,9 @@ const SidebarDashboard = () => {
                 item.children && ( // Kiểm tra xem menu con có mở không
                   <div className={boxSubItem}>
                     {item.children.map((el) => (
-                      <div key={el.id}>{el.title}</div>
+                      <div key={el.id} onClick={() => navigate(el.url)}>
+                        {el.title}
+                      </div>
                     ))}
                   </div>
                 )}

@@ -1,11 +1,13 @@
 import Button from '@components/Button/Button';
 import styles from './styles.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
+import { loginAdmin } from '@/apis/authService';
 
 const Login = () => {
   const { container, content, title, boxItem, boxBtn, boxForgot } = styles;
+  const navigate = useNavigate();
   const validationSchema = yup.object({
     email: yup.string().email().required(),
     password: yup
@@ -21,7 +23,14 @@ const Login = () => {
     },
     validationSchema,
     onSubmit: (values) => {
-      console.log(values);
+      loginAdmin(values)
+        .then((res) => {
+          localStorage.setItem('token', res.token);
+          navigate('/dashboard');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   });
   return (
@@ -53,7 +62,7 @@ const Login = () => {
             />
           </div>
           <div className={boxBtn}>
-            <Button content={'Sign in'} />
+            <Button content={'Sign in'} type='submit' />
           </div>
         </form>
         <div className={boxForgot}>
